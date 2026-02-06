@@ -14,7 +14,7 @@ MODEL_PATH = "models/onnx/model_quantized.onnx"
 session = ort.InferenceSession(MODEL_PATH, providers=['CPUExecutionProvider'])
 
 @app.post("/analyse")
-async def analyse_speech(file: UploadFile = File(...), transcript: str = Form(...)):
+async def analyse(file: UploadFile = File(...), transcript: str = Form(...)):
     transcript_data = json.loads(transcript)
     
     audio_bytes = await file.read()
